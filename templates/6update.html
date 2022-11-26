@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> 
+        {% if tkey==0 %}
+            Update
+        {% elif tkey==1 %}
+            Account Info
+        {% endif %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</head>
+<body >
+    <header >
+                        <h1>Update</h1>
+    </header>
+    <script>
+        if ( window.history.replaceState ) {
+          window.history.replaceState( FormData, "", "/Home/{{ id }}" );
+        }
+    </script>
+    <div><br></div>
+    <div class="container">
+    <div class="row">
+        <form method="POST" action="/login" class="myform" >
+            <div class="left-btn">
+                <button class="align btn btn-outline-secondary " formaction="/Home/{{ id }}" type="submit">Home</button>
+                <button class="align btn btn-outline-secondary " formaction="/Dashboard/{{ id }}" type="submit" >Dashboard</button>
+                <button class="align btn btn-outline-secondary " formaction="/Work/{{ id }}" type="submit">Work</button>
+
+            </div>
+            <div class="right-btn">
+                <div class="input-group input-group-prepend">
+                    <button class="align2 btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ username }}</button>
+                    <div class="dropdown-menu dropdown-menu-right align">
+                        <a class="dropdown-item" href="/Account/{{ id }}">Account</a>
+                        {% if key==1 %}
+                        <a class="dropdown-item" href="/all_users/{{ id }}">All users</a>
+
+                        <a class="dropdown-item" href="/superusers/{{ id }}">Super Users</a>
+                        {% endif %}
+                        <a class="dropdown-item" href="/update/{{ id }}" >Update</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/Contact/">Contact</a>
+
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <div class="container">
+        <div class="row"><br></div>
+<div class="myform">
+    <div class="container">
+        <div class="row"><br></div>
+        <div class="row justify-content-center">
+            <div class="col col-md-auto "></div>
+            {% if na==0 %}
+            <div class="col col-lg-2 text-center "><img height="200" class="resize" width="auto" src="data:;base64,{{ im }}"></div>
+            {% endif %}
+            {% if na==1 %}
+            <div class="col col-lg-2 text-center "><img height="200" class="resize" width="auto" src="/static/images/Nophoto.jpg"></div>
+            {% endif %}
+            <div class="col col-md-auto"></div>
+            <div class="col col-lg-2 text-center myform">
+                Date of Birth       : {{ data.dob }}<br>
+                Email               : {{ data.email }}<br>
+                Name                : {{ data.name }}<br>
+                Password            : {{ data.password }}<br>
+            </div>
+            <div class="col col-md-auto "></div>
+        </div>
+    </div>
+<div class="container">
+    <form method="POST" action="/updated/{{id}}" enctype="multipart/form-data">
+
+    <div class="row"><br><br></div>
+    <div class="row justify-content-center new2">
+        <div class="col col-md-auto "></div>
+        <div class="col col-lg-6 ">
+            {% if beforeupdate ==1 %}
+                <div class="form-check">
+                    <p class="form-check-label" for="flexCheckDefault">
+                      Please check what you want to update. You cannot update your Email Id.
+                    </p>
+                </div>
+                {% endif %}
+            <div class="input-group mb-3">
+                <div class="input-group-text">
+                <label>Email ID</label>
+                </div>
+                <input type="text" class="form-control" value="{{ data.email }}" aria-label="Text input with checkbox" disabled>
+            </div>
+            <p></p>
+            
+            <div class="input-group mb-3">
+                {% if beforeupdate ==1 %}
+                <div class="form-check">
+                    <input class="form-check-input" name="name" type="checkbox" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Name
+                    </label>
+                </div>
+                {% endif %}
+                {% if namekey==1 %}
+                <div class="input-group-text">
+                <label>Name</label>
+                </div>
+                <input type="text" class="form-control" name="name" value="{{ data.name }}" aria-label="Text input with checkbox">
+                {% endif %}
+            </div>
+            <p></p>
+            
+            <div class="input-group mb-3">
+                {% if beforeupdate ==1 %}
+                <div class="form-check">
+                    <input class="form-check-input" name="dob" type="checkbox" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Date of birth
+                    </label>
+                </div>
+                {% endif %}
+                {% if datekey==1 %}
+                <div class="input-group-text">
+                    <label>Date of birth</label><br>
+                    </div>
+                <input type="date" class="form-control" name="dob" value="{{ data.dob }}" aria-label="Text input with checkbox">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col col-md-auto "></div>
+    </div>
+    <div class="row justify-content-center new2">
+        <div class="col col-md-auto "></div>
+        <div class="col col-lg-6 ">
+            <div class="input-group mb-3">
+                {% if beforeupdate ==1 %}
+                <div class="form-check">
+                    <input class="form-check-input" name="picture" type="checkbox" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Profile Picture
+                    </label>
+                </div>
+                {% endif %}
+                {% if profilepicturekey==1 %}
+                <input type="file" class="form-control" id="inputGroupFile02" name="image">
+                <div class="input-group-text">
+                    <label>Profile Picture</label><br>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col col-md-auto "></div>
+    </div>
+    <br><br>{% if beforeupdate==1 %}
+            <input class="align5 btn btn-outline-secondary" type="submit" value="Submit" formaction="/update2/{{id}}">
+            <div><br></div>
+            {% endif %}
+            {% if beforeupdate==0 %}
+            <input class="align5 btn btn-outline-secondary" type="submit" value="Submit" formaction="/updated/{{id}}">
+            <div><br></div>
+            {% endif %}
+
+        </form>
+        </div>
+    </div>
+</div>
+<div class="container justify-content-center" >
+    <div class="row">
+        <div class="col"></div>
+        <div class="col col-md-auto">
+<!--<img class="srp" src="/static/images/P.gif">-->        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row foot justify-content-center">
+                <div class="col-md-auto"></div>
+                <div class="col col-lg-5 align-center">
+                    @copright reserved Manikanta-Puppala 2022
+                </div>
+                <div class="col-md-auto"></div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        {% if current_path=="/Home/" or current_path=="/Home/Student/" %}
+            Home
+        {% endif %}
+
+        {% if current_path=="/Dashboard/" %}
+            Dashboard
+        {% endif %}
+
+        {% if current_path=="/Work/" %}
+            Work
+        {% endif %}
+
+    
+        {% if disablekey==1 %}
+            {% for i in button_list[0] %}
+                {% if current_path==i[1] %}
+                    {{ i[0] }}
+                {% endif %}
+            {% endfor %}
+            {% for i in button_list[1] %}
+                {% if current_path==i[1] %}
+                    {{ i[0] }}
+                {% endif %}
+            {% endfor %} 
+        {% endif %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% if current_path=="/Home/" or current_path=="/Home/Student/" %}
+        <h1>Home</h1>
+    {% endif %}
+
+    {% if current_path=="/Dashboard/" %}
+        <h1>Dashboard</h1>
+    {% endif %}
+
+    {% if current_path=="/Work/" %}
+        <h1>Work</h1>
+    {% endif %}
+
+   
+    {% if disablekey==1 %}
+        {% for i in button_list[0] %}
+            {% if current_path==i[1] %}
+                <h1>{{ i[0] }}</h1>
+            {% endif %}
+        {% endfor %}
+        {% for i in button_list[1] %}
+            {% if current_path==i[1] %}
+                <h1>{{ i[0] }}</h1>
+            {% endif %}
+        {% endfor %} 
+    {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <form method="POST" action="/login" class="myform" >
+                <div class="left-btn">
+                    {% if key==1 %}
+                        {% if disablekey==1 %}
+                            <button class="align btn btn-outline-secondary " formaction="/Home/" type="submit" disabled>Home</button>
+                        {% else %}
+                            <button class="align btn btn-outline-secondary " formaction="/Home/" type="submit">Home</button>
+                        {% endif %}
+                    {% else %}
+                        {% if disablekey==1 %}
+                            <button class="align btn btn-outline-secondary " formaction="/Home/Student/" type="submit" disabled>Home</button>
+                        {% else %}
+                            <button class="align btn btn-outline-secondary " formaction="/Home/Student/" type="submit">Home</button>
+                        {% endif %}
+                    {% endif %}
+                    {% if current_path=="/Dashboard/" %}
+                        <button class="align btn btn-outline-secondary " formaction="/Dashboard/{{ id }}" type="submit" disabled>Dashboard</button>
+                    {% else %}
+                        <button class="align btn btn-outline-secondary " formaction="/Dashboard/{{ id }}" type="submit">Dashboard</button>
+                    {% endif %}
+                    {% if current_path=="/Work/" %}
+                    <button class="align btn btn-outline-secondary " formaction="/Work/{{ id }}" type="submit" disabled>Work</button>
+                    {% else %}
+                    <button class="align btn btn-outline-secondary " formaction="/Work/{{ id }}" type="submit">Work</button>
+                    {% endif %}
+                </div>
+                <div class="right-btn">
+                    <div class="input-group input-group-prepend">
+                        <button class="align2 btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ username }}</button>
+                        <div class="dropdown-menu dropdown-menu-right align">
+                            <a class="dropdown-item" href="/Account/{{ id }}">Account</a>
+                            {% if key==1 %}
+                            <a class="dropdown-item" href="/all_users/{{ id }}">All users</a>
+                            <a class="dropdown-item" href="/superusers/{{ id }}">Super Users</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="/update/{{ id }}">Update</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/Contact/">Contact</a>
+
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row"><br></div>
+        <div class="row threecols">
+            <div class="col-md-2 button-scroll myform">
+                <form method="POST">
+                    <div>
+                        {% if disablekey==1 %}
+                            {% set d=button_list[0] %}
+                            {% for i in range(d|length) %}
+                                {% if i==dkey %}
+                                    <div><button class="align3 btn btn-outline-secondary " formaction="{{ d[i][1] }}" type="submit" disabled>{{ d[i][0] }}</button></div>
+                                {% else %}
+                                    <div><button class="align3 btn btn-outline-secondary " formaction="{{ d[i][1] }}" type="submit">{{ d[i][0] }}</button></div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4  text-center myform3">
+                <div class="row"><br></div>
+                <div class="container scroll">
+                    {% if key==0 or key==-1 %}
+                        {% if current_path=="/Home/Student/" %}
+                            <h6>Hi {{ username }},</h6>
+                            <br>
+                            <p> This is the new OPAC system.</p>
+                            {% if key==1 %}
+                                <p> Please explore your dashboard as you are a Super User you have access to all the books.</p>
+                                <p>You can add, delete the books from the catalogue.</p>
+                            {% else %}
+                                <p> Please explore your dashboard as you are Normal User</p>
+                                <p>In this website you can add books to cart and make a request.</p>
+                                <p>After requesting the book the staff will sanction the book to you.</p>
+                                <p>You can check your book status in the book status section and also you can see the fine amount.</p>
+                                <p>For returning the book also you should make a return request.</p>
+                            {% endif %}
+                            <br>
+                            <p>Thanks and Regards,</p>
+                            <p>Manikanta Puppala (Application Designer) </p>
+                            <p>Contact: <a href="/Contact/">projectsrp.manikanta@gmail.com</a> </p>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/Take_a_book/" %}
+                            {% if data==False %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>There are no books available yet.</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h7>Wait until we add the books</h7></div>
+                                <div class="row low-heighting"><br></div>
+                            {% else %}
+                                {% if data[0]==0 %}
+                                    <div class="row"><br></div>
+                                    <div class="row justify-content-center"><h5>No books are there</h5></div>
+                                    <div class="row"><br></div>
+                                    <div class="row justify-content-center"><h7>Check your cart</h7></div>
+                                    <div class="row low-heighting"><br></div>
+                                {% else %}
+                                    <div class="row"><br></div>
+                                    {% set blob_data=data[1] %}
+                                    <div class="row justify-content-center"><h5>Take a book</h5></div>
+                                    <div class="row low-heighting"><br></div>
+                                    {% for i in range(blob_data|length) %}
+                                        <div class="row sized twocols">
+                                            {% for j in range(blob_data[i]|length) %}
+                                            {% if j==0 %}
+                                            <div class="col c-1 low-heighting "></div>
+                                            {% else %}
+                                            <div class="col c-1 heighting "></div>
+                                            {% endif %}
+                                            <div class="col c-2 border myform6">
+                                                <form method="POST" >
+                                                    <div>
+                                                        <div class="row r-1 ">
+                                                            <div class="col c-6 ">
+                                                                <div class="im col col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ blob_data[i][j][4] }}"></div>
+                                                            </div>
+                                                            <div class="col c-6 align-self-center ">
+                                                                Book ID         : {{ blob_data[i][j][0] }}<br>
+                                                                Book Name       : {{ blob_data[i][j][1] }}<br>
+                                                                Edition         : {{ blob_data[i][j][3] }}<br>
+                                                                Authors         : {{ blob_data[i][j][2] }}<br>
+                                                                Total Books     : {{ blob_data[i][j][5] }}<br>
+                                                                Available       : {{ blob_data[i][j][6] }}<br>
+                                                                Not Available   : {{ blob_data[i][j][7] }}<br>
+                                                            </div>
+                                                        </div>
+                        
+                                                        <div class="row r-2  justify-content-center">
+                                                            {% if blob_data[i][j][6]==0 %}
+                                                                <button class="align6-disabled btn " formaction="/Home/Student/Take_a_book/added_to_cart" name="book_info" value="{{ blob_data[i][j][0] }}" type="submit" disabled>Add to cart</button>
+                                                            {% else %}
+                                                                <button class="align6 btn btn-outline-secondary" formaction="/Home/Student/Take_a_book/added_to_cart" name="book_info" value="{{ blob_data[i][j][0] }}" type="submit">Add to cart</button>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            {% endfor %}
+                                            <div class="col c-5 "></div>
+                                        </div>
+                                        <div class="row"><br></div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endif %}   
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/Give_a_book/" %}
+                            {% if data[0]!=0 %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>Please make a return request</h5></div>
+                                <div class="row"><br></div>
+                                {% set blob_data=data[2] %}
+                                {% for i in range(blob_data|length) %}
+                                    <div class="row sized twocols">
+                                        {% for j in range(blob_data[i]|length) %}
+                                            {% if j==0 %}
+                                                <div class="col c-1 low-heighting "></div>
+                                            {% else %}
+                                                <div class="col c-1 heighting "></div>
+                                            {% endif %}
+                                            <div class="col c-2 border myform6">
+                                                <form method="POST" >
+                                                    <div>
+                                                        <div class="row r-1 ">
+                                                            <div class="col c-6 ">
+                                                                <div class="col im col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ blob_data[i][j][5] }}"></div>
+                                                            </div>
+                                                            <div class="col c-6 align-self-center ">
+                                                                Book ID         : {{ blob_data[i][j][0] }}<br>
+                                                                Book ISBN       : {{ blob_data[i][j][1] }}<br>
+                                                                Book Name       : {{ blob_data[i][j][2] }}<br>
+                                                                Authors         : {{ blob_data[i][j][3] }}<br>
+                                                                Edition         : {{ blob_data[i][j][4] }}<br>
+                                                                Book User       : {{ blob_data[i][j][6] }}<br>
+                                                                State           : {{ blob_data[i][j][7] }}<br>
+                                                                Time Taken      : {{ blob_data[i][j][8] }}<br>
+                                                                Transaction ID  : {{ blob_data[i][j][9] }}<br>
+                                                            </div>
+                                                        </div>
+                        
+                                                        <div class="row r-2  justify-content-center">
+                                                            <div class="col col-mid-6">
+                                                                <button class="align6 btn btn-outline-secondary" formaction="/Home/Student/Give_a_book/Requested" name="serial_info" value="{{ blob_data[i][j][10] }}" type="submit">Return Request</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="col c-5 "></div>
+                                    </div>
+                                    <div class="row"><br></div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row"><h5>There are no books with you currently</h5></div>
+                                <div class="row low-heighting"><br></div>
+                            {% endif %}
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/Book_Status" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center">
+                                <h5>Your Current Books Status</h5>
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row"></div>  
+                            {% if data[0]==0 %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>No books are available</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h7>Take some books</h7></div>
+                                <div class="row low-heighting"><br></div>
+                            {% else %}
+                                <div class="row"><br></div>
+                                {% set blob_data=data[1] %}
+                                <div class="row low-heighting"><br></div>
+                                {% for i in range(blob_data|length) %}
+                                    <div class="row sized twocols">
+                                        {% for j in range(blob_data[i]|length) %}
+                                            {% if j==0 %}
+                                                <div class="col c-1 low-heighting "></div>
+                                            {% else %}
+                                                <div class="col c-1 heighting "></div>
+                                            {% endif %}
+                                            <div class="col c-2 border myform6">
+                                                <form method="POST" >
+                                                    <div>
+                                                        <div class="row r-1 ">
+                                                            <div class="col c-6 ">
+                                                                <div class="im col col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ blob_data[i][j][3] }}"></div>
+                                                            </div>
+                                                            <div class="col c-6 align-self-center ">
+                                                                Transaction ID  : {{ blob_data[i][j][0] }}<br>
+                                                                Book Name       : {{ blob_data[i][j][2] }}<br>
+                                                                Book ISBN       : {{ blob_data[i][j][1] }}<br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row r-2  justify-content-center">
+                                                            {% if blob_data[i][j][4]==0 %}
+                                                                <h5>Book is Requested</h5>
+                                                            {% elif blob_data[i][j][4]==1 %}
+                                                                <h5>This book is already with you</h5>
+                                                            {% elif blob_data[i][j][4]==2 %}
+                                                                <h5>This book is requested to Return</h5>
+                                                            {% endif %}
+                                                            <button class="align6-disabled btn " formaction="/Home/Student/Book_Status/Information" name="info" value="{{ blob_data[i][j][0] }}" type="submit">Info</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="col c-5 "></div>
+                                    </div>
+                                    <div class="row"><br></div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/Cart" %}
+                            {% if data[0]!=0 %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>Items in cart</h5></div>
+                                <div class="row low-heighting"><br></div>
+                                {% set blob_data=data[1] %}
+                                {% for i in range(blob_data|length) %}
+                                    <div class="row sized twocols">
+                                        {% for j in range(blob_data[i]|length) %}
+                                            {% if j==0 %}
+                                                <div class="col c-1 low-heighting "></div>
+                                            {% else %}
+                                                <div class="col c-1 heighting "></div>
+                                            {% endif %}
+                                            <div class="col c-2 border myform6">
+                                                <form method="POST" >
+                                                <div>
+                                                    <div class="row r-1 ">
+                                                        <div class="col c-6 ">
+                                                            <div class="col im col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ blob_data[i][j][4] }}"></div>
+                                                        </div>
+                                                        <div class="col c-6 align-self-center ">
+                                                            Book ID         : {{ blob_data[i][j][0] }}<br>
+                                                            Book Name       : {{ blob_data[i][j][1] }}<br>
+                                                            Edition         : {{ blob_data[i][j][3] }}<br>
+                                                            Authors         : {{ blob_data[i][j][2] }}<br>
+                                                            Total Books     : {{ blob_data[i][j][5] }}<br>
+                                                            Available       : {{ blob_data[i][j][6] }}<br>
+                                                            Not Available   : {{ blob_data[i][j][7] }}<br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row r-2  justify-content-center">
+                                                        {% if blob_data[i][j][8]==1 %}
+                                                            <h5>Book is Requested</h5>
+                                                        {% elif blob_data[i][j][8]==2 %}
+                                                            <h5>This book is already with you</h5>
+                                                        {% elif blob_data[i][j][8]==3 %}
+                                                            <h5>This book is requested to Return</h5>
+                                                        {% endif %}
+                                                        <div class="col col-mid-6">
+                                                            <button class="align7 btn btn-outline-secondary" formaction="/Home/Student/Cart/remove_book" name="book_info" value="{{ blob_data[i][j][0] }}" type="submit">Remove</button>
+                                                        </div>
+                                                        <div class="col col-mid-6">
+                                                            {% if blob_data[i][j][6]==0 or blob_data[i][j][8]==1 or blob_data[i][j][8]==2 or blob_data[i][j][8]==3 %}
+                                                            <button class="align6-disabled btn " formaction="/Home/Student/make_request" name="book_info" value="{{ blob_data[i][j][0] }}" type="submit" disabled>Request</button>
+                                                            {% else %}
+                                                            <button class="align7 btn btn-outline-secondary" formaction="/Home/Student/make_request" name="book_info" value="{{ blob_data[i][j][0] }}" type="submit">Request</button>
+                                                        
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="col c-5 "></div>
+                                    </div>
+                                    <div class="row"><br></div>
+                                {% endfor %}
+                                <form method="POST">
+                                <div class="row justify-content-center">
+                                    <button class="align6 btn btn-outline-secondary" formaction="/Home/Student/Clear_all" type="submit">Clear Cart</button>
+                                </div>
+                                </form>
+                                <div class="row"><br></div>
+                                <div class="row"><br></div>
+                                <div class="row"><br></div>
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>No Items in cart</h5></div>
+                                <div class="row low-heighting"><br></div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/Clear_all" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Cart is cleared</h5></div>
+                            <div class="row low-heighting"><br></div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/Fines" %}
+                            {% if data[0]==0 %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>No fines are there for you</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h7>Thank you</h7></div>
+                                <div class="row low-heighting"><br></div>
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row"><h5>Fines</h5></div>
+                                <div class="row"><br></div>
+                                <div>
+                                    <table class="table table-hover myform6">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">S.No</th>
+                                            <th scope="col">Transaction ID</th>
+                                            <th scope="col">Book ISBN</th>
+                                            <th scope="col">Due days</th>
+                                            <th scope="col">Fine Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in range(data[1]|length) %}
+                                            <tr>
+                                            <th scope="row">{{i}}</th>
+                                            <td>{{data[1][i][0]}}</td>
+                                            <td>{{data[1][i][1]}}</td>
+                                            <td>{{data[1][i][2]}}</td>
+                                            <td>{{data[1][i][3]}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endif%}
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/History" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center">
+                                <h1>History</h1>
+                                <form method="POST">
+                                    <button class=" align7 btn btn-outline-secondary" formaction="/Home/Student/History/Clear" type="submit">Clear History</button>
+                                </form>
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row"></div>
+                            
+                            {% if data[0]==0 %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>No history is available</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h7>Take some books</h7></div>
+                                <div class="row low-heighting"><br></div>
+                            {% else %}
+                                <div class="row"><br></div>
+                                {% set blob_data=data[1] %}
+                                <div class="row low-heighting"><br></div>
+                                {% for i in range(blob_data|length) %}
+                                    <div class="row sized twocols">
+                                        {% for j in range(blob_data[i]|length) %}
+                                            {% if j==0 %}
+                                                <div class="col c-1 low-heighting "></div>
+                                            {% else %}
+                                                <div class="col c-1 heighting "></div>
+                                            {% endif %}
+                                                <div class="col c-2 border myform6">
+                                                    <form method="POST" >
+                                                        <div>
+                                                            <div class="row r-1 ">
+                                                                <div class="col c-6 ">
+                                                                    <div class="im col col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ blob_data[i][j][2] }}"></div>
+                                                                </div>
+                                                                <div class="col c-6 align-self-center ">
+                                                                    Transaction ID  : {{ blob_data[i][j][0] }}<br>
+                                                                    Book Name       : {{ blob_data[i][j][3] }}<br>
+                                                                    Book ISBN       : {{ blob_data[i][j][1] }}<br>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row r-2  justify-content-center">
+                                                                <button class="align6-disabled btn " formaction="/Home/Student/History/Information" name="info" value="{{ blob_data[i][j][0] }}" type="submit">Info</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                        {% endfor %}
+                                        <div class="col c-5 "></div>
+                                    </div>
+                                    <div class="row"><br></div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+
+                        {% if current_path=="/Home/Student/History/Information" or current_path=="/Home/Student/Book_Status/Information" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center">
+                                <h1>Information of Transaction ID: {{ data[0] }}</h1>
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row"></div>
+                            {% set book=data[1] %}
+                            {% set history=data[2] %}
+                            <div class="row"><br></div>
+                            <div class="row low-heighting"><br></div>
+                            <div class="row sized twocols">
+                                <div class="col border myform6">
+                                    <div>
+                                        <div class="row r-1 border">
+                                            <div class="col c-6 border">
+                                                <div class="im col col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ book[5] }}"></div>
+                                            </div>
+                                            <div class="col c-6 align-self-center border ">
+                                                Book ID       : {{ book[0] }}<br>
+                                                Book Name     : {{ book[1] }}<br>
+                                                Book ISBN     : {{ book[2] }}<br>
+                                                Authors       : {{ book[3] }}<br>
+                                                Edition       : {{ book[4] }}<br>
+
+                                            </div>
+                                        </div>
+                                        <div class="row r-2 border">
+                                            <h5>Transactions</h5>
+                                            {% for i in history %}
+                                                <div class="row">
+                                                    {% if i[0]==0 %}
+                                                        <h6>This book is Requested by you on {{ i[1] }} </h6>
+                                                    {% elif i[0]==1 %}
+                                                        <h6>This book is with you from {{ i[1] }}</h6>
+                                                    {% elif i[0]==2 %}
+                                                        <h6>This book is requested to Return by you on {{ i[1] }}</h6>
+                                                    {% else %}
+                                                        <h6>You have returned the book on {{ i[1] }}</h6>
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col c-5 "></div>
+                            </div>
+                            <div class="row"><br></div>
+                        {% endif %}
+
+
+                    {% elif key==1 or key==-1 %}
+                        {% if current_path=="/Home/" %}
+                            <h6>Hi {{ username }},</h6>
+                            <br>
+                            <p> This is the new OPAC system.</p>
+                            {% if key==1 %}
+                                <p> Please explore your dashboard as you are a Super User you have access to all the books.</p>
+                                <p>You can add, delete the books from the catalogue.</p>
+                            {% else %}
+                                <p> Please explore your dashboard as you are Normal User</p>
+                                <p>In this website you can add books to cart and make a request.</p>
+                                <p>After requesting the book the staff will sanction the book to you.</p>
+                                <p>You can check your book status in the book status section and also you can see the fine amount.</p>
+                                <p>For returning the book also you should make a return request.</p>
+                            {% endif %}
+                            <br>
+                            <p>Thanks and Regards,</p>
+                            <p>Manikanta Puppala (Application Designer) </p>
+                            <p>Contact:<a href="/Contact/">projectsrp.manikanta@gmail.com</a> </p>
+                        {% endif %}
+
+                        {% if current_path=="/Home/All_books" %}
+                            {% if data[0]!=0 %}
+                                <div class="row justify-content-center"><h5>All Books</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row newframe">
+                                    <div class="col col-lg-12">
+                                        Total Books                     : {{ data[1] }}<br>
+                                        Total No.of different books     : {{ data[2] }}<br>
+                                    </div>         
+                                </div>
+                                <form method="POST">
+                                    <div class="row"><br></div>
+                                    <div class="row low-heighting"><br></div>
+                                    {% for i in range(data[3]|length) %}
+                                        <div class="row sized twocols">
+                                            {% for j in range(data[3][i]|length) %}
+                                                {% if j==0 %}
+                                                    <div class="col c-1 low-heighting "></div>
+                                                {% else %}
+                                                    <div class="col c-1 heighting "></div>
+                                                {% endif %}
+                        
+                                                <div class="col c-2 myform6">
+                                                    <form method="POST" >
+                                                        <div>
+                                                            <div class="row r-1 ">
+                                                                <div class="col c-6 ">
+                                                                    <div class="col image col-mid-4"><img width="auto" height="150px" unselectable="on" src="data:;base64,{{ data[3][i][j][4] }}"></div>
+                                                                </div>
+                                                                <div class="col c-6 align-self-center ">
+                                                                    Book ID         : {{ data[3][i][j][0] }}<br>
+                                                                    Book Name       : {{ data[3][i][j][1] }}<br>
+                                                                    Edition         : {{ data[3][i][j][3] }}<br>
+                                                                    Authors         : {{ data[3][i][j][2] }}<br>
+                                                                    No.of books     : {{ data[3][i][j][5] }}<br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            {% endfor %}
+                                            <div class="col c-5 "></div>
+                                        </div>
+                                        <div class="row  visible"><div class="col "><br></div> <div class="col "><br></div> <div class="col"><br></div></div>
+
+                                    {% endfor %}
+                                </form>
+                            {% else %}
+                                <div class="col-md-4 text-center myform3">
+                                <div class="container">
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>There are no books available yet.</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h7>Wait until we add the books</h7></div>
+                                <div class="row low-heighting"><br></div>            
+                                </div>
+                                </div>    
+                            {% endif %}
+                        {% endif %}
+
+                        {% if current_path=="/Home/Add_a_book/" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Enter the Book details</h5></div>
+                            <div class="row"><br></div>
+                            <form action="/Home/Added_a_book/" method="POST" enctype="multipart/form-data">
+                                
+                                <div class="row">
+                                    {% if akey==1 %}
+                                            <div class="danger">Book name is already available with Same Edition</div>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Book Name</span>
+                                        </div>
+                                        <input type="text" name="Book_Name" class="form-control" placeholder="Book Name">
+                                    </div>
+                                </div>
+                                
+                    
+                                <div class="row">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"> Authors </span>
+                                        </div>
+                                        <input type="text" name="Book_Authors" class="form-control" placeholder="Author Names">
+                                        </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">No.of Copies</span>
+                                        </div>
+                                        <input type="text" name="Book_Copies" class="form-control" placeholder="1" value=1>
+                                        </div>
+                                </div>
+                                
+                                <div class="row">
+                                    {% if akey==1 %}
+                                        <div class="danger">Enter a different edition</div>
+                                    {% endif %}
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Edition</span>
+                                        </div>
+                                        <input type="text" name="Book_Edition" class="form-control" placeholder="1" value=1>
+                                    </div>
+                                </div>
+                                
+                    
+                                <div class="row">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Display Picture</span>
+                                        </div>
+                                        <input type="file" name="Book_Picture" class="form-control" id="inputGroupFile01" value="{{ url_for('static',filename='images/NoBookCover.jpg') }}" name="image">
+                                        </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="input-group mb-3">
+                                        <input type="submit" value="Add a book" class="form-control">
+                                        </div>
+                                </div>
+                    
+                            </form>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Added_a_book/" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Book added Successfully</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row">
+                                <div class="col col-lg-2"><br></div>
+                                <div class="col col-lg-4">
+                                    <div class="col col-lg-2 text-center "><img height="200" class="resize" width="auto" src="data:;base64,{{ book_data[4] }}"></div>
+                                </div>
+                                <div class="col col-lg-4 align-self-center myform5">
+                                    Book ID         : {{ book_data[0] }}<br>
+                                    Book Name       : {{ book_data[1] }}<br>
+                                    Authors         : {{ book_data[2] }}<br>
+                                    Edition         : {{ book_data[3] }}<br>
+                                    Available       : {{ book_data[5] }}<br>
+                                    ISBN Start      : {{ book_data[6] }}<br>
+                                    ISBN End        : {{ book_data[7] }}<br>
+                                </div>
+                                <div class="col col-lg-4"><br></div>
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row myform">
+                                <form action="/Home/Add_a_book" method="POST">
+                                    <div><button class="align3 btn btn-outline-secondary " type="submit">Add another book</button></div>
+                                </form>
+                            </div>
+                            <div class="row"><br></div>
+                        {% endif %}
+                        
+                        {% if current_path=="/Home/Delete_a_book" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Search a book for deletion...</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row newframe">
+                                <div class="col col-lg-12">
+                                    Total Books Available       : {{ operation[0] }}<br>
+                                </div>        
+                            </div>
+                            
+                            <div class="row"><br></div>
+                            <form action="/Home/Select_a_book" method="POST">
+                                <div class="row">
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Search by </label>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01" name="option">
+                                        <option selected value="0">Name</option>
+                                        <option value="1">Authors</option>
+                                        <option value="2">ISBN</option>
+                                        </select>
+                                        <input type="text" name="pattern" class="form-control">
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="submit" class="form-control" id="inputGroupFile01" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row"><br></div>
+                            <div class="row myform">
+                                <form action="/Home/Delete_all" method="POST">
+                                    <div><button class="align3 btn btn-outline-secondary" type="submit">Delete all books</button></div>
+                                </form>
+                            </div>
+                            <div class="row"><br></div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Select_a_book" %}
+                            {% if data[0]!=0 %}
+                            
+                                    <div class="row"><br></div>
+                                    <div class="row justify-content-center"><h5>Searching is done</h5></div>
+                                    <div class="row"><br></div>
+                                    <div class="row newframe">
+                                        
+                                            <div class="col col-lg-12">
+                                                Total Books                     : {{ data[1] }}<br>
+                                                Total No.of different books     : {{ data[2] }}<br>
+                                            </div>
+                                                    
+                                    </div>
+                                    <form method="POST">
+                                        <div class="row"><br></div>
+                                        <div class="row low-heighting"><br></div>
+                                        {% for i in range(data[3]|length) %}
+                                            <div class="row sized twocols">
+                                                {% for j in range(data[3][i]|length) %}
+                                                    {% if j==0 %}
+                                                        <div class="col c-1 low-heighting "></div>
+                                                    {% else %}
+                                                        <div class="col c-1 heighting "></div>
+                                                    {% endif %}
+                                                    <div class="col c-2  myform6">
+                                                        <form method="POST" >
+                                                            <div>
+                                                                <div class="row r-1 ">
+                                                                    <div class="col c-6 ">
+                                                                        <div class="col col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ data[3][i][j][4] }}"></div>
+                                                                    </div>
+                                                                    <div class="col c-6 align-self-center ">
+                                                                        Book ID         : {{ data[3][i][j][0] }}<br>
+                                                                        Book Name       : {{ data[3][i][j][1] }}<br>
+                                                                        Edition         : {{ data[3][i][j][3] }}<br>
+                                                                        Authors         : {{ data[3][i][j][2] }}<br>
+                                                                        No.of Books     : {{ data[3][i][j][5] }}<br>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row r-2  justify-content-center">
+                                                                    <button class="align6 btn btn-outline-secondary" formaction="/Home/Deleted" name="book_info" value="{{ data[3][i][j][0] }}" type="submit">Delete</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                {% endfor %}
+                                                <div class="col c-5 "></div>
+                                            </div>
+                                            <div class="visible"><div class="col"><br></div> <div class="col"><br></div> <div class="col"><br></div></div>
+                                        {% endfor %}
+                                    </form>
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>Try again with a different name</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row newframe">
+                                    <div class="col col-lg-12">
+                                        Total Books                     : {{ data[1] }}<br>
+                                        Total No.of different books     : {{ data[2] }}<br>
+                                    </div>        
+                                </div>
+                            {% endif %}
+                        {% endif %}
+  
+                        {% if current_path=="/Home/Delete_all" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Do You want to Delete all books?</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row newframe">
+                                <div class="col col-lg-12">
+                                    Total Books Available       : {{ operation[0] }}<br>
+                                </div>        
+                            </div>
+                            <div class="row"><br></div>
+                            <form action="/Home/Delete_all" method="POST">
+                            <div class="row"><br></div>
+                            <div class="row myform">
+                                <div class="col col-mid-5"><button class="align3 btn btn-outline-secondary" type="submit" formaction="/Home/Deleted_all">Yes</button></div>
+                                <div class="col col-mid-12"><button class="align3 btn btn-outline-secondary" type="submit" formaction="/Home/Delete_a_book">No</button></div>
+                            </div>
+                            </form>
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>  
+                        {% endif %}
+
+                        {% if current_path=="/Home/Deleted_all" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>All books are Deleted!!</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row newframe">
+                                <div class="col col-lg-12">
+                                    Total Books Available       : {{ operation[0] }}<br>
+                                </div>        
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Deleted" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Book Deleted</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row newframe">
+                                    <div class="col col-lg-12">
+                                        Total Books Available       : {{ 1 }}<br>
+                                        No.of Books Deleted         : {{ [2] }}<br>
+                                    </div>           
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col col-lg-2"><br></div>
+                                <div class="col col-lg-4">
+                                    <div class="col col-lg-2 text-center "><img height="200" class="resize" width="auto" src="data:;base64,{{ data[4] }}"></div>
+                                </div>
+                                <div class="col col-lg-4 myform5 align-self-center">
+                                    Book ID         : {{ data[0] }}<br>
+                                    Book Name       : {{ data[1] }}<br>
+                                    Edition         : {{ data[3] }}<br>
+                                    Authors         : {{ data[2] }}<br>
+                                    No.of Copies    : {{ data[5] }}<br>
+                                </div>
+                                <div class="col col-lg-4"><br></div>
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                            <div class="row myform">
+                                <form action="/Home/Delete_a_book" method="POST">
+                                    <div><button class="align3 btn btn-outline-secondary" type="submit">Delete another book</button></div>
+                                </form>
+                            </div>
+                            <div class="row"><br></div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Requests" %}
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                            <div class="row" ><h5>Select the type of requests</h5></div>
+                            <form method="POST">
+                                <div class="row r-2 justify-content-center">
+                                    <div class="col col-md-6">
+                                        <button class="align7 btn btn-outline-secondary" formaction="/Home/Requests/book_requests" name="book_info" value="" type="submit">Book Requests</button>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <button class="align7 btn btn-outline-secondary" formaction="/Home/Requests/return_requests" name="book_info" value="" type="submit">Return Requests</button>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Requests/book_requests" or current_path=="/Home/Requests/return_requests" %}
+                            <div class="row"><br></div>
+                            {% if data[-1]==0 %}
+                                <div class="row">
+                                    <h5>Book Requests</h5>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <h5>Return Requests</h5>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="row"><br></div>
+                            <form method="POST">
+                                <div class="row">
+                                    <div class="col col-md-6">
+                                        {% if data[-1]==0 %}
+                                            <button class="align7 btn btn-outline-secondary" formaction="/Home/Requests/book_requests" name="book_info" value="" type="submit" disabled>Book Requests</button>
+                                        {% else %}
+                                            <button class="align7 btn btn-outline-secondary" formaction="/Home/Requests/book_requests" name="book_info" value="" type="submit">Book Requests</button>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col col-md-6">
+                                        {% if data[-1]==1 %}
+                                            <button class="align7 btn btn-outline-secondary" formaction="/Home/Requests/return_requests" name="book_info" value="" type="submit" disabled>Return Requests</button>
+                                        {% else %}
+                                            <button class="align7 btn btn-outline-secondary" formaction="/Home/Requests/return_requests" name="book_info" value="" type="submit">Return Requests</button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </form>
+                            {% if data[0]!=0 %}
+                                <div class="row"><br></div>
+                                <div class="row"><br></div>
+                                {% set blob_data=data[2] %}
+                                {% for i in range(blob_data|length) %}
+                                    <div class="row sized twocols">
+                                        {% for j in range(blob_data[i]|length) %}
+                                            {% if j==0 %}
+                                                <div class="col c-1 low-heighting "></div>
+                                            {% else %}
+                                                <div class="col c-1 heighting "></div>
+                                            {% endif %}
+                                            <div class="col c-2  myform6">
+                                                <form method="POST" >
+                                                    <div>
+                                                        <div class="row r-1 ">
+                                                            <div class="col c-6 ">
+                                                                <div class="col im col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ blob_data[i][j][5] }}"></div>
+                                                            </div>
+                                                            <div class="col c-6 align-self-center ">
+                                                                Book ID         : {{ blob_data[i][j][0] }}<br>
+                                                                Book ISBN       : {{ blob_data[i][j][1] }}<br>
+                                                                Book Name       : {{ blob_data[i][j][2] }}<br>
+                                                                Authors         : {{ blob_data[i][j][3] }}<br>
+                                                                Edition         : {{ blob_data[i][j][4] }}<br>
+                                                                Book User       : {{ blob_data[i][j][6] }}<br>
+                                                                State           : {{ blob_data[i][j][7] }}<br>
+                                                                Time Taken      : {{ blob_data[i][j][8] }}<br>
+                                                                Transaction ID  : {{ blob_data[i][j][9] }}<br>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row r-2  justify-content-center">
+                                                            <div class="col col-mid-6">
+                                                                {% if data[-1]==0 %}
+                                                                    <button class="align7 btn btn-outline-secondary" formaction="/Home/Accept_book_Request" name="serial_info" value="{{ blob_data[i][j][10] }}" type="submit">Accept</button>
+                                                                {% else %}
+                                                                    <button class="align7 btn btn-outline-secondary" formaction="/Home/Accept_Return_Request" name="serial_info" value="{{ blob_data[i][j][10] }}" type="submit">Accept</button>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="col col-mid-6">
+                                                                {% if data[-1]==0 %}
+                                                                    <button class="align7 btn btn-outline-secondary" formaction="/Home/Reject_book_Request" name="serial_info" value="{{ blob_data[i][j][10] }}" type="submit">Reject</button>
+                                                                {% else %}
+                                                                    <button class="align7 btn btn-outline-secondary" formaction="/Home/Reject_Return_Request" name="serial_info" value="{{ blob_data[i][j][10] }}" type="submit">Reject</button>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="col c-5 "></div>
+                                    </div>
+                                <div class="row"><br></div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row"><h5>No Requests are there</h5></div>
+                                <div class="row low-heighting"><br></div>
+                            {% endif %}
+                        {% endif %}
+                        
+                        {% if current_path=="/Home/make_not_available" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Search for a book...</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row newframe">
+                                <div class="col col-lg-12">
+                                    Total Books Available       : {{ operation[0] }}<br>
+                                </div>        
+                            </div>
+                            
+                            <div class="row"><br></div>
+                            <form action="/Home/make_not_available/pick_a_book" method="POST">
+                                <div class="row">
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Search by </label>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01" name="option">
+                                        <option selected value="0">Name</option>
+                                        <option value="1">Authors</option>
+                                        <option value="2">ISBN</option>
+                                        </select>
+                                        <input type="text" name="pattern" class="form-control">
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="submit" class="form-control" id="inputGroupFile01" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row"><br></div>
+                            <div class="row myform">
+                                <form action="/Home/Delete_all" method="POST">
+                                    <div><button class="align3 btn btn-outline-secondary" type="submit">Delete all books</button></div>
+                                </form>
+                            </div>
+                            <div class="row"><br></div>
+                        {% endif %}
+                        
+                        {% if current_path=="/Home/make_not_available/pick_a_book" %}
+                            {% if data[0]!=0 %}   
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>Searching is done</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row newframe">
+                                
+                                    <div class="col col-lg-12">
+                                        Total Books                     : {{ data[1] }}<br>
+                                        Total No.of different books     : {{ data[2] }}<br>
+                                    </div>
+                                                
+                                </div>
+                                <form method="POST">
+                                    <div class="row"><br></div>
+                                    <div class="row low-heighting"><br></div>
+                                    {% for i in range(data[3]|length) %}
+                                        <div class="row sized twocols">
+                                            {% for j in range(data[3][i]|length) %}
+                                                {% if j==0 %}
+                                                    <div class="col c-1 low-heighting "></div>
+                                                {% else %}
+                                                    <div class="col c-1 heighting "></div>
+                                                {% endif %}
+                                                <div class="col c-2  myform6">
+                                                    <form method="POST" >
+                                                        <div>
+                                                            <div class="row r-1 ">
+                                                                <div class="col c-6 ">
+                                                                    <div class="col col-mid-4 align-self-center"><img width="auto" height="150px"   src="data:;base64,{{ data[3][i][j][4] }}"></div>
+                                                                </div>
+                                                                <div class="col c-6 align-self-center ">
+                                                                    Book ID         : {{ data[3][i][j][0] }}<br>
+                                                                    Book Name       : {{ data[3][i][j][1] }}<br>
+                                                                    Edition         : {{ data[3][i][j][3] }}<br>
+                                                                    Authors         : {{ data[3][i][j][2] }}<br>
+                                                                    No.of Books     : {{ data[3][i][j][5] }}<br>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row r-2  justify-content-center">
+                                                                <div class="col col-mid-6">
+                                                                    <button class="align7 btn btn-outline-secondary" formaction="/Home/make_not_available/make_with_id" name="id" value="{{ data[3][i][j][0] }}" type="submit">With ID</button>
+                                                                </div>
+                                                                <div class="col col-mid-6">
+                                                                    <button class="align7 btn btn-outline-secondary" formaction="/Home/make_not_available/make_with_isbn" name="isbn" value="{{ data[3][i][j][0] }}" type="submit">With ISBN</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            {% endfor %}
+                                            <div class="col c-5 "></div>
+                                        </div>
+                                        <div class="visible"><div class="col"><br></div> <div class="col"><br></div> <div class="col"><br></div></div>
+                                    {% endfor %}
+                                </form>
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row justify-content-center"><h5>Try again with a different name</h5></div>
+                                <div class="row"><br></div>
+                                <div class="row newframe">
+                                    <div class="col col-lg-12">
+                                        Total Books                     : {{ data[1] }}<br>
+                                        Total No.of different books     : {{ data[2] }}<br>
+                                    </div>        
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if current_path=="/Home/make_not_available/make_with_id" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Book is made unavailable with Book ID</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row">
+                                <div class="col col-lg-2"><br></div>
+                                <div class="col col-lg-4">
+                                    <div class="col col-lg-2 text-center "><img height="200" class="resize" width="auto" src="data:;base64,{{ data[5] }}"></div>
+                                </div>
+                                <div class="col col-lg-4 myform5 align-self-center">
+                                    Book ID         : {{ data[0] }}<br>
+                                    Book Name       : {{ data[2] }}<br>
+                                    Edition         : {{ data[4] }}<br>
+                                    Authors         : {{ data[3] }}<br>
+                                    No.of books     : {{ data[1] }}<br>
+                                    Available       : {{ data[6] }}<br>
+
+                                </div>
+                                <div class="col col-lg-4"><br></div>
+                            </div>
+                            <div class="row"><br></div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/make_not_available/make_with_isbn" %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>Book is made unavailable with Book ISBN</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row">
+                                <div class="col col-lg-2"><br></div>
+                                <div class="col col-lg-4">
+                                    <div class="col col-lg-2 text-center "><img height="200" class="resize" width="auto" src="data:;base64,{{ data[5] }}"></div>
+                                </div>
+                                <div class="col col-lg-4 myform5 align-self-center">
+                                    Book ID         : {{ data[0] }}<br>
+                                    Book ISBN       : {{ data[1] }}<br>
+                                    Book Name       : {{ data[2] }}<br>
+                                    Edition         : {{ data[4] }}<br>
+                                    Authors         : {{ data[3] }}<br>
+                                    Available       : {{ data[6] }}<br>
+                                </div>
+                                <div class="col col-lg-4"><br></div>
+                            </div>
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                        {% endif %}
+                        
+                        {% if current_path=="/Home/Transactions" %}
+                            <div class="row"><br></div>
+                            <div class="row"><br></div>
+                            <div class="container">
+                                <form method="POST">
+                                    <div class="col col-mid-6">
+                                        <button class="align6 btn btn-outline-secondary" formaction="/Home/Transactions/Deleted" name="info"  type="submit">Clear all</button>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endif %}
+
+                        {% if current_path=="/Home/Fines" %}
+                            {% if data[0]==0 %}
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h5>No fines are there for you</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row justify-content-center"><h7>Thank you</h7></div>
+                            <div class="row low-heighting"><br></div>
+                            {% else %}
+                                <div class="row"><br></div>
+                                <div class="row"><h5>Fines</h5></div>
+                                <div class="row"><br></div>
+                                <div>
+                                    <table class="table table-hover myform6">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">S.No</th>
+                                            <th scope="col">Transaction ID</th>
+                                            <th scope="col">Book User</th>
+                                            <th scope="col">Book ISBN</th>
+                                            <th scope="col">Due days</th>
+                                            <th scope="col">Fine Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in range(data[1]|length) %}
+                                            <tr>
+                                            <th scope="row">{{i}}</th>
+                                            <td>{{data[1][i][0]}}</td>
+                                            <td>{{data[1][i][1]}}</td>
+                                            <td>{{data[1][i][2]}}</td>
+                                            <td>{{data[1][i][3]}}</td>
+                                            <td>{{data[1][i][4]}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                </table>
+                                </div>
+                            {% endif%}
+                        {% endif %}
+
+                        {% if current_path=="/Home/Query_Executer" %}
+                            <div class="row"><h5>Query Executer</h5></div>
+                            <div class="row"><br></div>
+                            <div class="row">
+                                <div class="col col-mid-4">
+                                    <form method="POST" action="/Home/Query_Executer2">
+                                        <p>Enter your Query to interact with database</p>
+                                        <input type="text" name="query" class="form-control">
+                                        <br>
+                                        <input class="align5 btn btn-outline-secondary" type="submit" value="Submit">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row"><br></div>
+                            {%- for message in get_flashed_messages() %}
+                                <p>Message: {{ message }} !!</p>
+                                <p>Query  : {{ query }}</p>
+                                <table class="table table-hover myform6">
+                                    
+                                    <tbody>
+                                        {% for i in data %}
+                                            <tr>
+                                                {% for j in i %}
+                                                    <td>{{ j }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {%- endfor %}
+                        {% endif %}
+                    {% endif %}
+
+                    {% if current_path=="/Dashboard/" %}
+                        <h6>Hi {{ username }},</h6>
+                        <br>
+                        <p>Currently this option is unavailable</p>
+                        <p>Thanks and Regards,</p>
+                        <p>Manikanta Puppala</p>
+                        <p>Contact: <a href="/Contact/">projectsrp.manikanta@gmail.com</a> </p>
+
+                    {% endif %}
+
+                    {% if current_path=="/Work/" %}
+                        <h6>Hi {{ username }},</h6>
+                        <br>
+                        <p>Currently this option is unavailable</p>
+                        <p>Thanks and Regards,</p>
+                        <p>Manikanta Puppala</p>
+                        <p>Contact: <a href="/Contact/">projectsrp.manikanta@gmail.com</a> </p>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if current_path=="/Dashboard/" or current_path=="/Work/" or current_path=="/Home/" or current_path=="/Home/Student/" %}
+        <div class="container  justify-content-center" >
+            <div class="row ">
+                <div class="col "></div>
+                <div class="col justify-content-center col-md-auto">
+<!--<img class="srp" src="/static/images/P.gif">-->                </div>
+                <div class="col "></div>
+            </div>
+        </div>
+    {% endif %}
+    <footer>
+        <div class="container">
+            <div class="row foot justify-content-center">
+                    <div class="col-md-auto"></div>
+                    <div class="col col-lg-5 align-center">
+                        @copright reserved Manikanta-Puppala 2022
+                    </div>
+                    <div class="col-md-auto"></div>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>

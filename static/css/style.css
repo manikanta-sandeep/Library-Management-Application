@@ -1,0 +1,632 @@
+
+h1 {
+    text-align:center;
+    flex:100%;
+    position:top;
+    background-color: #cf7d48;
+}
+
+
+h5{
+    text-align:center;
+}
+form {
+    text-align:center;
+    width:auto;
+    height: auto;
+    border-radius: 1em;
+}
+
+.new {
+    margin-bottom: 3%;
+}
+.new2 {
+    margin-bottom: 0%;
+}
+
+.myform {
+    text-align:center;
+    width:150;
+    height: auto;
+    background-color:#cf7d48;
+    border-radius: 1em;
+}
+.myform3 {
+    text-align:center;
+    width:150;
+    
+    background-color:#cf7d48;
+    border-radius: 1em;
+}
+.myform5 {
+    text-align:center;
+    width:150;
+    height: auto;
+    color:white;
+    background-color:#92572f;
+    border-radius: 1em;
+}
+.myform6 {
+    width:150;
+    height: auto;
+    background-color:#82645b;
+    border-radius: 1em;
+}
+.myform2 {
+    text-align:center;
+    width:150;
+    height: auto;
+    background-color:#92572f;
+    border-radius: 1em;
+}
+.myform4 {
+    text-align:center;
+    width:100%;
+    height: auto;
+    background-color:#92572f;
+    border-radius: 1em;
+}
+
+body {
+    padding:0;
+    margin:0;
+    height: 100%;
+    background: #e9aa6f;
+    max-width: 100%;
+}
+.top{
+    flex:100%;
+}
+.side-buttons{
+    width:100%;
+    padding: 10px;
+}
+html{
+    max-width: 100%;
+}
+.center_margin{
+    text-align: center;
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+}
+.m{
+    margin-bottom: 0cm;
+}
+.fluid{
+  
+    height:auto;
+}
+
+footer {
+    text-align:center;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:50px;
+    background:#cf7d48;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #cf7d48;
+}
+
+.wrapper > div {
+    height:100%;
+    padding: 20px;
+}
+.scroll{
+    max-height: fit-content;
+    overflow: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.scroll:hover{
+    overflow:auto;
+    overflow-y: hidden;
+}
+
+.align_center {
+    background: #e9aa6f;
+    color:#bd3a3d;
+    border-radius: 1em;
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.newframe {
+    background-color: #92572f;
+    border-radius: 0.25em;
+    
+}
+.foot{
+    margin-top: 10px;
+}
+.align_right_center {
+    background:#cf7d48;
+    color:white;
+    border-radius: 1em;
+    padding: 1em;
+    position:absolute;
+    top:50%;
+    left: 85%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.danger{
+    color:red;
+}
+@media (min-width: 768px){
+    .heighting{
+        height:20px;
+    }
+    
+    .seven-cols .col-md-1 {
+      width: 100%;
+      *width: 100%;
+    }
+    .visible {
+        height:20px;
+    }
+    .new{
+        margin-top:0px;
+        margin-bottom: 0px;
+    }
+    .threecols .col-md-2{
+        width: 100%;
+        *width: 100%;
+    }
+    .threecols .col-md-3{
+        height:30px;
+        width:100%;
+        *width:100%;
+    }
+    .threecols .col-md-4{
+        width:100%;
+        *width:100%;
+    }
+    .visible_off{
+        height:0;
+    }
+}
+* {
+    box-sizing: border-box;
+}
+
+#navbar {
+    background-color: #cf7d48;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+  }
+  
+  #navbar a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  #navbar a:hover {
+    color:#cf7d48;
+  }
+  
+
+.side {
+    flex: 20%;
+    background-color: #cf7d48;
+    padding: 20px;
+} 
+.main{
+    flex: 80%;
+    background-color:#cf7d48;
+    padding: 20px;
+}
+.navibar {
+    color:#2e1a0e;
+    background-color:#cf7d48;
+    text-shadow:#031b1b;
+}
+.footer2 {
+    padding: 20px;
+    text-align: center;
+    background: #cf7d48;
+    flex:100%;
+    position: bottom;
+}
+ 
+@media (min-width: 992px) {
+    .low-heighting{
+        height:0px;
+        width:0px;
+    }
+    .seven-cols .col-md-1{
+        width: 10%;
+        *width: 10%;
+      }
+    .threecols .col-md-2{
+        width: 20%;
+        *width: 10%;
+    }
+    .threecols .col-md-3{
+        width:3%;
+        *width:3%;
+    }
+    .threecols .col-md-4{
+        width:77%;
+        *width:77%;
+    }
+    .history-cols{
+        width:14.285714286;
+    }
+    .seven-cols .size{
+        width: 20%;
+        *width: 20%;
+    }
+    .seven-cols .size2{
+        width: 100%;
+        *width: 100%;
+    }
+    .new{
+    margin-top:0px;
+    margin-bottom: 0px;
+    }
+    .visible {
+        height:30px;
+      }
+    .visible_off{
+        margin-top: 0px;
+        margin-bottom:0px;
+    }
+    .twocols .c-1{
+        width:0%;
+        height:50px;
+        flex:none;
+    }
+    .twocols .r-1{
+        height:75%;
+    }
+    .twocols .r-2{
+        height:25%;
+    }
+    .twocols .c-2{
+        width:100%;
+        flex:none;
+      
+    }
+    .twocols .c-6{
+        width:50%;
+        flex:none;
+    }
+    .twocols .c-3{
+        width:0%;
+        height:50px;
+        flex:none;
+        
+    }
+    .twocols .c-4{
+        width:100%;
+        flex:none;
+    
+    }
+}
+
+
+@media (max-width: 768px){
+    .threecols .col-md-2{
+        width: 100%;
+        *width: 100%;
+    }
+    .threecols .col-md-3{
+        height:30px;
+        width:100%;
+        *width:100%;
+    }
+    .threecols .col-md-4{
+        width:100%;
+        *width:100%;
+    }
+    .row .visible{
+        height:20px;
+    }
+    .heighting{
+        height:20px;
+    }
+}
+
+@media (min-width:1200px){
+    .twocols .c-1{
+        width:5%;
+        flex:none;
+    }
+    .twocols .c-5{
+        width:5%;
+        flex:none;
+    }
+    .twocols .r-1{
+        height:75%;
+    }
+    .twocols .r-2{
+        height:25%;
+    }
+    .twocols .c-2{
+        width:42.5%;
+        flex:none;
+      
+    }
+    .twocols .c-3{
+        width:5%;
+        flex:none;
+        
+    }
+    .twocols .c-4{
+        width:42.5%;
+        flex:none;
+    
+    }
+}
+
+  /**
+   *  The following is not really needed in this case
+   *  Only to demonstrate the usage of @media for large screens
+   */    
+@media (min-width: 1200px) {
+    .seven-cols .col-md-1{
+      width: 10%;
+      *width: 10%;
+    }
+    .seven-cols .size{
+        width: 20%;
+        *width: 20%;
+    }
+    .seven-cols .size2{
+        width: 100%;
+        *width: 100%;
+    }
+    .visible {
+        height:50px;
+      }
+  }
+
+.align {
+    background:#55341d;
+    color:white;
+    border-radius: 0.75em;
+}
+.align2 {
+    background:#55341d;
+    color:white;
+    width:auto;
+    border-radius: 0.75em;
+    
+}
+.align3 {
+    background:#55341d;
+    color:white;
+    width:200px;
+    border-radius: 0.75em;
+    padding: 0.75em;
+}
+.im{
+    padding:20%;
+}
+img{
+    pointer-events: none;
+}
+.img1{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.align5 {
+    background:#55341d;
+    color:white;
+}
+.align6 {
+    background:#031b1b;
+    color:white;
+    width:95%;
+}
+.align6-disabled {
+    background:#081f1f;
+    color:rgb(255, 255, 255);
+    width:95%;
+}
+.align7 {
+    background:#031b1b;
+    color:white;
+    width:100%;
+}
+.align4 {
+    background:#55341d;
+    color:white;
+    width:20%;
+    
+    border-radius: 0.75em;
+    padding: 0.75em;
+}
+
+.left-btn { 
+    float: left;
+    margin-left:2%;
+    margin: 1px;
+}
+.right-btn { 
+    float:right;
+    margin-right:5%;
+ }
+
+ button{
+    display:inline;
+    width:100px;
+}
+.top-bar{
+    height:50px;
+    background:#cf7d48;
+    position: middle;
+
+}
+.top-bar .h1{
+    text-align: center;
+}
+
+.center {
+    position: absolute;
+    top: 40%;
+    transform: translate(0, -50%);
+    border: 5px solid #FFFF00;
+    padding: 10px;
+    left:2%;
+}
+.align_auto{
+    background:rgb(99, 198, 231);
+    color:white;
+    border-radius: 0.75em;
+    padding: 0.5em;
+    width: auto;
+}
+.image{
+    margin-top:10px;
+}
+.bg {
+    /* The image used */
+    background-image: url("/static/images/image-2.jpg");
+  
+    /* Full height */
+    height: auto;
+    max-width:100%;
+    max-height:100%;
+  
+    /* Center and scale the image nicely */
+    background-position: top;
+    background-repeat:repeat;
+    background-size: cover;
+  }
+  .left-btn.back {
+    margin-top: 6px;
+}
+.h1-login{
+    padding-top:5px;
+}
+
+@media screen and (max-width: 520px) {
+    .srp{
+        height: auto;
+        width:400px;
+    }
+}
+@media screen and (max-width: 435px) {
+    .left-btn { 
+        float: left;
+        margin-left:0%;
+    }
+    .right-btn {
+        float: left;
+        margin-left:2%;
+    }
+    .srp{
+        height:auto;
+        width:350px;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    
+    .align_right_center {
+        background:#cf7d48;
+        color:white;
+        border-radius: 1em;
+        padding: 1em;
+        position:absolute;
+        top:70%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+  }
+
+@media screen and (max-width: 1000px ){
+    .myform {
+        text-align:center;
+        width:400;
+        height: auto;
+        background-color:#cf7d48;
+        border-radius: 1em;
+    }
+    .coling{
+        flex:none;
+        margin-top:3%;
+        margin-right:3%;
+        margin-left:3%;
+    }
+    
+    .new {
+        margin-bottom: 0%;
+    }
+    .new2 {
+        margin-bottom: 0%;
+        flex:none;
+    }
+}
+
+@media screen and (max-width: 1200px ){
+    .myform {
+        text-align:center;
+        width:500;
+        height: auto;
+        background-color:#cf7d48;
+        border-radius: 1em;
+    }
+    .col{
+        flex:none;
+    }
+    
+}
+@media screen and (max-width: 1402px){
+    .align3 {
+        background:#55341d;
+        color:white;
+        border-radius: 0.75em;
+        padding: 0.7em;
+        width:150px;
+    }
+}
+@media screen and (max-width: 1200px){
+    .align3 {
+        background:#55341d;
+        color:white;
+        border-radius: 0.75em;
+        padding: 0.7em;
+        width:100%;
+    }
+}
+@media screen and (max-width: 992px){
+    .align3 {
+        background:#55341d;
+        color:white;
+        border-radius: 0.75em;
+        padding: 0.7em;
+        width:100%;
+    }
+    .button-scroll::-webkit-scrollbar {
+        display: none;
+    }
+    .button-scroll{
+        max-height: 100px;
+        overflow-y: scroll;
+    }
+}
